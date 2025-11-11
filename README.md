@@ -1,5 +1,68 @@
-# Customer-Churn-Prediction
+# Telco Customer Churn Prediction: A Machine Learning Approach
 
-This project is dedicated to building and evaluating predictive models to identify customers at risk of churning (leaving) a telecommunications company. By accurately predicting churn, the company can deploy targeted intervention strategies to improve customer retention.1💾 Dataset and PreprocessingThe analysis is based on the Telco Customer Churn dataset .2The dataset contains a wealth of information about customers, including demographics, the services they subscribe to, their contract details, and their monthly charges.3Data WorkflowExploratory Data Analysis (EDA) & Data Analysis: Initial analysis was performed using visualizations like a Correlation Heatmap to understand the relationships between features (e.g., Contract type, MonthlyCharges) and the target variable, Churn.Data Cleaning: The initial dataset was cleaned by handling inconsistencies, such as converting the TotalCharges column to a numeric data type and addressing associated missing values.4Feature Extraction: Categorical features were converted into a machine-readable, numerical format. Specifically, the target variable, Churn ('Yes'/'No'), was converted to 1/0 using Label Encoding.5Data Split: The processed data was split into training and testing sets to ensure an unbiased evaluation of the models.6🤖 Predictive ModelingTwo distinct classification models were trained and evaluated on the preprocessed dataset.1. Logistic Regression ModelLogistic Regression is a linear model used for binary classification.7 It estimates the probability of an instance belonging to a particular class (in this case, the probability of a customer churning).Accuracy Score: The Logistic Regression model achieved an accuracy of 79.1% on the test dataset.2. Random Forest ClassifierThe Random Forest Classifier is an ensemble learning method that builds multiple decision trees during training and merges their results to get a more stable and accurate prediction.8 This model is generally robust against overfitting.Accuracy Score: The Random Forest Classifier achieved an accuracy of 77.8% on the test dataset.Random Forest Performance DetailsThe performance of the Random Forest model was further detailed by its Confusion Matrix:MetricValueAccuracy Score0.778Confusion Matrix:[[914 119]
- [193 181]]
-True Negatives (TN): 914 (Correctly predicted non-churn)True Positives (TP): 181 (Correctly predicted churn)False Negatives (FN): 193 (Incorrectly predicted non-churn)
+[![Python](https://img.shields.io/badge/python-3.8%2B-blue)](https://www.python.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+This project demonstrates a **machine learning approach to predict customer churn** in a telecommunications company using the **Telco Customer Churn** dataset. By identifying at-risk customers early, telecom providers can implement targeted retention strategies to reduce churn and improve customer loyalty.
+
+---
+
+## 💾 Dataset
+
+**Source:** `WA_Fn-UseC_-Telco-Customer-Churn.csv`  
+**Link:** [Kaggle - Telco Customer Churn](https://www.kaggle.com/datasets/blastchar/telco-customer-churn)
+
+### Key Features:
+- **Demographics**: `gender`, `SeniorCitizen`, `Partner`, `Dependents`
+- **Services**: `PhoneService`, `MultipleLines`, `InternetService`, `OnlineSecurity`, etc.
+- **Account Info**: `Contract`, `PaperlessBilling`, `PaymentMethod`, `MonthlyCharges`, `TotalCharges`
+- **Target**: `Churn` (`Yes` / `No`)
+
+---
+
+## 📊 Data Workflow
+
+### 1. **Exploratory Data Analysis (EDA)**
+- Visualized feature distributions and relationships.
+- Generated **Correlation Heatmap** to identify key predictors of churn.
+- Key insights: `Contract`, `tenure`, and `MonthlyCharges` strongly correlate with churn.
+
+### 2. **Data Cleaning**
+- Converted `TotalCharges` from string to numeric.
+- Handled missing/invalid values in `TotalCharges` (replaced with median or removed).
+- Removed irrelevant column: `customerID`.
+
+### 3. **Feature Engineering**
+- **Label Encoding**: Converted `Churn` (`Yes` → 1, `No` → 0).
+- **One-Hot Encoding**: Applied to categorical variables (`gender`, `Contract`, `PaymentMethod`, etc.).
+- Final feature set ready for modeling.
+
+### 4. **Train-Test Split**
+- 80% Training | 20% Testing
+- Stratified split to maintain class distribution.
+
+---
+
+## 🤖 Predictive Modeling
+
+Two classification models were trained and evaluated:
+
+---
+
+### 1. **Logistic Regression**
+> A baseline linear model for binary classification.
+
+| Metric           | Value  |
+|------------------|--------|
+| **Accuracy**     | **79.1%** |
+
+---
+
+### 2. **Random Forest Classifier**
+> Ensemble of decision trees; robust to overfitting and captures non-linear patterns.
+
+| Metric           | Value  |
+|------------------|--------|
+| **Accuracy**     | **77.8%** |
+
+#### Confusion Matrix (Random Forest)
